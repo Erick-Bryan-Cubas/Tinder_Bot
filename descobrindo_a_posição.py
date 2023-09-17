@@ -2,6 +2,7 @@ import pyautogui
 import time
 import tkinter as tk
 from tkinter import messagebox
+import threading
 
 def autolike():
     print("Iniciando autolike no Tinder...")
