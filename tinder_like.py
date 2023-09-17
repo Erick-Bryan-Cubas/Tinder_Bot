@@ -1,10 +1,42 @@
 import pyautogui
 import time
+import threading
 
-# Exibe uma caixa de diálogo com a pergunta
-response = pyautogui.confirm('Podemos começar os likes?')
+def autolike():
+    print("Procurando a janela do BlueStacks App Player1...")
+    time.sleep(1)
+    
+    windows = pyautogui.getWindowsWithTitle("BlueStacks App Player1")
+    
+    if len(windows) == 0:
+        print("Janela do BlueStacks App Player1 não encontrada.")
+        return
+    elif len(windows) > 1:
+        print("Mais de uma janela do BlueStacks App Player1 encontrada. Ativando a primeira.")
+    
+    # Ativando a primeira janela encontrada
+    windows[0].activate()
+    time.sleep(1)  # Dando um tempo para a janela ser ativada
+    
+    print("Iniciando autolike no Tinder...")
+    
+    # Supondo que você saiba a posição onde clicar para dar um "like"
+    x, y = 200, 200  # Substitua esses valores pela posição que você marcou
+    
+    for i in range(10):  # Clica 10 vezes (você pode mudar este número)
+        pyautogui.click(x, y)
+        time.sleep(1)  # Espera 1 segundo entre os cliques
 
-if response == 'OK':
+def show_position():
     while True:
-        pyautogui.click(1775, 757)  # Clica na posição especificada (1826, 804)
-        time.sleep(1)  # Aguarda 3 segundos
+        x, y = pyautogui.position()
+        print(f'A posição atual do mouse é ({x}, {y})')
+        time.sleep(1)
+
+# Exibe a posição atual do mouse
+show_position_thread = threading.Thread(target=show_position)
+show_position_thread.daemon = True
+show_position_thread.start()
+
+# Chama a função para iniciar as curtidas
+autolike()
