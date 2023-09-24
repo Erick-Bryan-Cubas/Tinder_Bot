@@ -1,27 +1,15 @@
 import pyautogui
 import time
-import threading
+import tkinter as tk
+from tkinter import messagebox
+import threading  # Importando o módulo de threading
 
 def autolike():
-    print("Procurando a janela do BlueStacks App Player1...")
-    time.sleep(1)
-    
-    windows = pyautogui.getWindowsWithTitle("BlueStacks App Player 1")
-    
-    if len(windows) == 0:
-        print("Janela do BlueStacks App Player1 não encontrada.")
-        return
-    elif len(windows) > 1:
-        print("Mais de uma janela do BlueStacks App Player1 encontrada. Ativando a primeira.")
-    
-    # Ativando a primeira janela encontrada
-    windows[0].activate()
-    time.sleep(1)  # Dando um tempo para a janela ser ativada
-    
     print("Iniciando autolike no Tinder...")
+    time.sleep(2)
     
     # Supondo que você saiba a posição onde clicar para dar um "like"
-    x, y = 1441, 847  # Substitua esses valores pela posição que você marcou
+    x, y = pyautogui.position()
     
     for i in range(10):  # Clica 10 vezes (você pode mudar este número)
         pyautogui.click(x, y)
@@ -33,10 +21,21 @@ def show_position():
         print(f'A posição atual do mouse é ({x}, {y})')
         time.sleep(1)
 
+def prompt():
+    answer = messagebox.askyesno("Confirmação", "Podemos começar as curtidas no Tinder?")
+    if answer:
+        autolike()
+    else:
+        print("Operação cancelada.")
+
+# Cria uma janela de aplicação Tkinter
+root = tk.Tk()
+root.withdraw()  # Esconde a janela principal
+
 # Exibe a posição atual do mouse
 show_position_thread = threading.Thread(target=show_position)
 show_position_thread.daemon = True
 show_position_thread.start()
 
-# Chama a função para iniciar as curtidas
-autolike()
+# Exibe a caixa de diálogo
+prompt()
