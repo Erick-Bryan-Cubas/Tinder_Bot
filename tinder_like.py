@@ -6,7 +6,7 @@ def autolike():
     print("Procurando a janela do BlueStacks App Player1...")
     time.sleep(1)
     
-    windows = pyautogui.getWindowsWithTitle("BlueStacks App Player1")
+    windows = pyautogui.getWindowsWithTitle("BlueStacks App Player 1")
     
     if len(windows) == 0:
         print("Janela do BlueStacks App Player1 não encontrada.")
@@ -21,7 +21,7 @@ def autolike():
     print("Iniciando autolike no Tinder...")
     
     # Supondo que você saiba a posição onde clicar para dar um "like"
-    x, y = 200, 200  # Substitua esses valores pela posição que você marcou
+    x, y = 1441, 847  # Substitua esses valores pela posição que você marcou
     
     for i in range(10):  # Clica 10 vezes (você pode mudar este número)
         pyautogui.click(x, y)
