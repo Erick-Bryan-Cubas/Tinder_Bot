@@ -1,4 +1,4 @@
-Tinder Bot com Python
+# Tinder Bot com Python
 
 Este repositório contém um script em Python para automatizar "likes" no Tinder. O código utiliza as bibliotecas `pyautogui`, `time`, `tkinter` e `threading`.
 
